@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Timesheet extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'enter',
+        'exit',
+        'emploee_id'
+    ];
 }
