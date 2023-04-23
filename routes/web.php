@@ -18,16 +18,12 @@ Route::get('/', function () {
     return redirect('/home');
 });
 
-Route::get('/home', function () {
-    if (!Auth::check()) {
-        return redirect("login");
-    }
+Route::middleware("auth.mid")->get('/home', function () {
     return view('home');
 });
 
 Route::get('/login', function () {
-    if (Auth::check()) {
+    if (Auth::check())
         return redirect("home");
-    }
     return view('login');
 });
