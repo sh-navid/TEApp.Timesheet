@@ -12,6 +12,23 @@
     <title>Document</title>
 </head>
 <body>
-    @yield('body')
+
+
+    <nav>
+        <div class="nav-wrapper">
+          <ul id="nav-mobile" class="right">
+            @guest
+                @else
+            @endguest
+            <li><a href="sass.html">Login</a></li>
+            <li><a href="badges.html">Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+          
+      
+    <div class="container">
+        @yield('body')
+    </div>
 </body>
 </html>

@@ -19,14 +19,14 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    if(!Auth::check()){
+    if (!Auth::check()) {
         return redirect("login");
     }
     return view('home');
 });
 
 Route::get('/login', function () {
-    if(Auth::check()){
+    if (Auth::check()) {
         return redirect("home");
     }
     return view('login');
