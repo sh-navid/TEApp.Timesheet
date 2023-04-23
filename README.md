@@ -1,1 +1,1 @@
-# GitTEApp.Timesheet
+# TEApp.Timesheet
