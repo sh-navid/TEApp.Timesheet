@@ -1,7 +1,11 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +31,22 @@ Route::get('/login', function () {
         return redirect("home");
     return view('login');
 });
+
+Route::post("/login", function (Request $request) {
+    if (Auth::attempt($request->only('username', 'password')))
+        return redirect('home');
+    return redirect("login");
+});
+
+Route::get("/logout", function () {
+    Session::flush();
+    Auth::logout();
+    return Redirect('home');
+});
+
+// Route::view("/register", "register");
+// Route::post("/register", function (Request $request) {
+//     $request["password"] = Hash::make($request['password']);
+//     User::create($request->all());
+//     return redirect("login");
+// });
