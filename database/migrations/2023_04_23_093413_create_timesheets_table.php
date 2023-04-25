@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('timesheets', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Employee::class)->constrained();
-            $table->timestamp("enter");
-            $table->timestamp("exit");
+            $table->timestamp("enter")->nullable();
+            $table->timestamp("exit")->nullable();
             $table->timestamps();
         });
     }

@@ -12,6 +12,6 @@ class Timesheet extends Model
     protected $fillable = [
         'enter',
         'exit',
-        'emploee_id'
+        'employee_id'
     ];
 }

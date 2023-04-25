@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Employee;
+use App\Models\Timesheet;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +25,9 @@ Route::get('/', function () {
 });
 
 Route::middleware("auth.mid")->get('/home', function () {
-    return view('home');
+    $employees = Employee::all();
+    $timesheet = Timesheet::join("employees", "timesheets.employee_id", "=", "employees.id")->get(["employees.name", "timesheets.enter", "timesheets.exit"]);
+    return view('home', compact("employees", "timesheet"));
 });
 
 Route::get('/login', function () {
@@ -50,3 +54,13 @@ Route::get("/logout", function () {
 //     User::create($request->all());
 //     return redirect("login");
 // });
+
+Route::middleware("auth.mid")->post("/add-employee", function (Request $request) {
+    Employee::create($request->all());
+    return redirect("home");
+});
+
+Route::middleware("auth.mid")->post("/add-time-record", function (Request $request) {
+    Timesheet::create($request->all());
+    return redirect("home");
+});
