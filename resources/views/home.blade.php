@@ -22,18 +22,21 @@
     </form>
     <hr />
     @foreach ($timesheet as $record)
-        <form action="/update-time-record" method="POST">
+        <label style="width: 3em !important;display:inline-block">{{ $record->id }}</label>
+        <label style="width: 8em !important;display:inline-block">{{ $record->name }}</label>
+        <form action="/record/update" method="POST" style="display: inline-block">
             @csrf
             <input type="hidden" name="id" value="{{ $record->id }}">
-            <label for="">{{ $record->name }}</label>
-            <input type="time" name="enter" value="{{ $record->enter }}" />
-            <input type="time" name="exit" value="{{ $record->exit }}" />
+            <input type="datetime" name="enter" value="{{ $record->enter }}" placeholder="0000-00-00 00:00:00"/>
+            <input type="datetime" name="exit" value="{{ $record->exit }}" placeholder="0000-00-00 00:00:00"/>
             <input type="submit" value="Update" />
         </form>
-        <form action="/remove-time-record" method="POST">
+        <form action="/record/remove" method="POST" style="display: inline-block">
             @csrf
             <input type="hidden" name="id" value="{{ $record->id }}">
             <input type="submit" value="Remove" />
         </form>
+        <br />
+        <br />
     @endforeach
 @endsection

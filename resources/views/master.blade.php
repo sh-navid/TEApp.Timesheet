@@ -7,8 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
         integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> --}}
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> --}}
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Document</title>
 </head>
 
@@ -17,9 +18,9 @@
         <div class="nav-wrapper">
             <ul id="nav-mobile" class="right">
                 @guest
-                    <li><a href="/logout">Logout</a></li>
-                @else
                     <li><a href="/login">Login</a></li>
+                @else
+                    <li><a href="/logout">Logout</a></li>
                 @endguest
             </ul>
         </div>

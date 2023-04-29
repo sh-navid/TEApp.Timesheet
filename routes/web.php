@@ -26,7 +26,9 @@ Route::get('/', function () {
 
 Route::middleware("auth.mid")->get('/home', function () {
     $employees = Employee::all();
-    $timesheet = Timesheet::join("employees", "timesheets.employee_id", "=", "employees.id")->get(["employees.name", "timesheets.enter", "timesheets.exit"]);
+    $timesheet = Timesheet::join("employees", "timesheets.employee_id", "=", "employees.id")
+        ->orderBy("timesheets.id", "desc")
+        ->get(["employees.name", "timesheets.id", "timesheets.enter", "timesheets.exit"]);
     return view('home', compact("employees", "timesheet"));
 });
 
@@ -62,5 +64,15 @@ Route::middleware("auth.mid")->post("/add-employee", function (Request $request)
 
 Route::middleware("auth.mid")->post("/add-time-record", function (Request $request) {
     Timesheet::create($request->all());
+    return redirect("home");
+});
+
+Route::middleware("auth.mid")->post("/record/remove", function (Request $request) {
+    Timesheet::destroy($request->all());
+    return redirect("home");
+});
+
+Route::middleware("auth.mid")->post("/record/update", function (Request $request) {
+    Timesheet::find($request->id)->update($request->all());
     return redirect("home");
 });

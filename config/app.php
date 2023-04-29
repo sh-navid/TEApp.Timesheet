@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'timezone' => 'Asia/Tehran',//UTC is default
+    'timezone' => 'Asia/Tehran', //UTC is default
 
     /*
     |--------------------------------------------------------------------------
